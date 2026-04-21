@@ -1,0 +1,40 @@
+{
+  "name": "claude-code-envs",
+  "version": "0.1.0",
+  "description": "Claude Code profile manager — switch between isolated CLAUDE_CONFIG_DIR profiles with one command",
+  "type": "module",
+  "bin": {
+    "ccenvs": "./bin/ccenvs.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "bin",
+    "README.md",
+    "README.ko.md",
+    "README.ja.md",
+    "README.zh.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "claude",
+    "claude-code",
+    "anthropic",
+    "cli",
+    "profile",
+    "environment",
+    "config",
+    "ccenvs"
+  ],
+  "author": "Namgee <beohemian@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/skarl86/claude-code-envs#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skarl86/claude-code-envs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/skarl86/claude-code-envs/issues"
+  }
+}
