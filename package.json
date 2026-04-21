@@ -1,6 +1,6 @@
 {
   "name": "ccenvs",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Claude Code profile manager — switch between isolated CLAUDE_CONFIG_DIR profiles with one command",
   "type": "module",
   "bin": {
