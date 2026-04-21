@@ -29,12 +29,12 @@
   ],
   "author": "Namgee <beohemian@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/skarl86/claude-code-envs#readme",
+  "homepage": "https://github.com/skarl86/ccenvs#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skarl86/claude-code-envs.git"
+    "url": "git+https://github.com/skarl86/ccenvs.git"
   },
   "bugs": {
-    "url": "https://github.com/skarl86/claude-code-envs/issues"
+    "url": "https://github.com/skarl86/ccenvs/issues"
   }
 }
