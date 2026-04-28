@@ -39,6 +39,7 @@ const messages = {
     cancelled: 'cancelled',
     autoCreatedDefault: (d) => `(auto-created default profile: ${d})`,
     runHintNew: (n) => `try: ccenvs new ${n}`,
+    scopeNotice: 'note: project/local scope (.claude/ in cwd) is shared across profiles — only user scope is isolated',
     usageNew: 'usage: ccenvs new <name>',
     usageRm: 'usage: ccenvs rm <name>',
     usagePath: 'usage: ccenvs path <name>',
@@ -83,6 +84,7 @@ const messages = {
     cancelled: '취소됨',
     autoCreatedDefault: (d) => `(기본 프로필 자동 생성: ${d})`,
     runHintNew: (n) => `시도: ccenvs new ${n}`,
+    scopeNotice: '안내: 현재 디렉터리의 .claude/(project/local 스코프)는 프로필 간 공유됩니다. user 스코프만 프로필별로 격리됩니다',
     usageNew: '사용법: ccenvs new <이름>',
     usageRm: '사용법: ccenvs rm <이름>',
     usagePath: '사용법: ccenvs path <이름>',
@@ -225,6 +227,10 @@ function cmdRun(name, args) {
       console.error(t('runHintNew', name));
       process.exit(1);
     }
+  }
+  if (existsSync(join(process.cwd(), '.claude', 'settings.json')) ||
+      existsSync(join(process.cwd(), '.claude', 'settings.local.json'))) {
+    console.error(t('scopeNotice'));
   }
   const child = spawn('claude', [...CLAUDE_ARGS, ...args], {
     stdio: 'inherit',

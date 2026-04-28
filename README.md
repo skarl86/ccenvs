@@ -100,6 +100,18 @@ Each profile is just a directory under `CLAUDE_ENVS_DIR`. When you run `ccenvs <
 
 No daemons, no databases, no magic.
 
+## Plugin scopes
+
+Claude Code supports three scopes when installing plugins. ccenvs only isolates **user** scope — `project` and `local` scope live in `<cwd>/.claude/` and are shared across profiles launched from the same directory:
+
+| Scope     | Stored in                            | Isolated by ccenvs?  |
+| :-------- | :----------------------------------- | :------------------- |
+| `user`    | `$CLAUDE_CONFIG_DIR/settings.json`   | ✅ per profile        |
+| `project` | `<cwd>/.claude/settings.json`        | ❌ shared (CWD)       |
+| `local`   | `<cwd>/.claude/settings.local.json`  | ❌ shared (CWD)       |
+
+When ccenvs detects `.claude/settings*.json` in the current directory, it prints a one-line stderr notice as a reminder. For full per-profile isolation, install plugins with the default **user** scope.
+
 ## License
 
 [MIT](https://opensource.org/licenses/MIT)
