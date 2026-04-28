@@ -100,6 +100,18 @@ Claude Code 内で `/plugin` を使ってプラグインをインストールす
 
 デーモンも、データベースも、魔法もありません。
 
+## プラグインスコープ
+
+Claude Code はプラグインのインストール時に 3 つのスコープをサポートします。ccenvs が隔離するのは **user** スコープのみで、`project` と `local` スコープは `<cwd>/.claude/` に保存され、同じディレクトリから起動したプロファイル間で共有されます:
+
+| スコープ  | 保存場所                              | ccenvs で隔離?        |
+| :-------- | :------------------------------------ | :-------------------- |
+| `user`    | `$CLAUDE_CONFIG_DIR/settings.json`    | ✅ プロファイルごと    |
+| `project` | `<cwd>/.claude/settings.json`         | ❌ 共有（CWD 単位）    |
+| `local`   | `<cwd>/.claude/settings.local.json`   | ❌ 共有（CWD 単位）    |
+
+カレントディレクトリで `.claude/settings*.json` が検出されると、ccenvs は一行の通知を stderr に出力します。完全なプロファイル隔離が必要な場合は、デフォルトの **user** スコープでプラグインをインストールしてください。
+
 ## ライセンス
 
 [MIT](https://opensource.org/licenses/MIT)

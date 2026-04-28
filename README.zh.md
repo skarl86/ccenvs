@@ -100,6 +100,18 @@ ccenvs                    # 启动默认配置
 
 没有守护进程,没有数据库,没有魔法。
 
+## 插件作用域
+
+Claude Code 在安装插件时支持三种作用域。ccenvs 仅隔离 **user** 作用域 — `project` 和 `local` 作用域存储在 `<cwd>/.claude/` 中,从同一目录启动的多个配置之间会共享:
+
+| 作用域    | 存储位置                              | ccenvs 隔离吗?         |
+| :-------- | :------------------------------------ | :--------------------- |
+| `user`    | `$CLAUDE_CONFIG_DIR/settings.json`    | ✅ 按配置隔离           |
+| `project` | `<cwd>/.claude/settings.json`         | ❌ 共享(按 CWD)         |
+| `local`   | `<cwd>/.claude/settings.local.json`   | ❌ 共享(按 CWD)         |
+
+当 ccenvs 在当前目录检测到 `.claude/settings*.json` 时,会向 stderr 输出一行提示。如需完整的按配置隔离,请使用默认的 **user** 作用域安装插件。
+
 ## 许可证
 
 [MIT](https://opensource.org/licenses/MIT)

@@ -100,6 +100,18 @@ Claude Code 안에서 `/plugin`으로 플러그인을 설치하면 활성 프로
 
 데몬도, 데이터베이스도, 마법도 없습니다.
 
+## 플러그인 스코프
+
+Claude Code는 플러그인 설치 시 세 가지 스코프를 지원합니다. ccenvs는 **user** 스코프만 격리합니다 — `project`와 `local` 스코프는 `<cwd>/.claude/`에 저장되어, 같은 디렉터리에서 실행된 프로필끼리 공유됩니다:
+
+| 스코프    | 저장 위치                            | ccenvs로 격리?       |
+| :-------- | :----------------------------------- | :------------------- |
+| `user`    | `$CLAUDE_CONFIG_DIR/settings.json`   | ✅ 프로필별           |
+| `project` | `<cwd>/.claude/settings.json`        | ❌ 공유 (CWD 기준)    |
+| `local`   | `<cwd>/.claude/settings.local.json`  | ❌ 공유 (CWD 기준)    |
+
+현재 디렉터리에서 `.claude/settings*.json`이 감지되면 ccenvs는 한 줄 안내를 stderr로 출력합니다. 완전한 프로필 격리를 원한다면 기본값인 **user** 스코프로 플러그인을 설치하세요.
+
 ## 라이선스
 
 [MIT](https://opensource.org/licenses/MIT)
